@@ -1,0 +1,33 @@
+/*
+For an integer N find the number of trailing zeroes in N!.
+*/   
+// 1st method
+
+int trailingZeroes(int N)
+    {
+        int out =0;
+        int temp = factorial(N);
+        while(temp !=0){
+            if(temp%10 == 0){
+                out++;
+            }
+            else{
+                break;
+            }
+                temp = temp/10;
+        }
+        return out;
+
+    }
+
+//Efficient method
+
+
+ int trailingZeroes(int n)
+    {
+        int out =0;
+        for (int i = 5; n / i >= 1; i *= 5)
+        out =out + n / i;
+        return out;
+        
+    }

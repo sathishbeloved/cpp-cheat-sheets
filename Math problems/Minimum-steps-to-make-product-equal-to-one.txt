@@ -1,0 +1,47 @@
+/*
+Given an array arr[] containing N integers. 
+In one step, any element of the array can either be increased or decreased by one. 
+Find minimum steps required such that the product of the array elements becomes 1.
+*/
+
+    int makeProductOne(int arr[], int N) {
+        int pos =0;
+        int neg =0;
+        int zero =0;
+        int step =0;
+        
+        for(int i =0; i<N;i++){
+            if(arr[i] > 0){
+                step = step+(arr[i]-1);
+                
+                pos++;
+                
+            }
+            else if(arr[i] < 0){
+                step = step+((-1*arr[i])-1 );
+                arr[i] = (arr[i]-1) + arr[i];
+                neg++;
+            }
+            else {
+                zero++;
+            }
+          
+        }
+        
+        if(neg%2 ==0){
+            step = step +zero;
+        }
+        else{
+            if(zero > 0){
+                step = step + zero;
+            }
+            else{
+                step = step +2;
+            }
+        }
+                
+                
+                
+                return step;
+        
+    }

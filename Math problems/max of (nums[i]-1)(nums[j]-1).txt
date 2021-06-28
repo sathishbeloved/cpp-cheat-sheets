@@ -1,0 +1,25 @@
+/******************************************************************************
+
+Given the array of integers nums, you will choose two different indices i and j of that array. Return the maximum value of (nums[i]-1)*(nums[j]-1). 
+Input : nums = [3,4,5,2] 
+Output : 12 
+
+*******************************************************************************/
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int nums[]={3,4,5,2};
+    int temp=0;
+    int n = sizeof(nums)/sizeof(nums[0]);
+    for(int i=0, j=1;i<n,j<n-1;i++,j++){
+        if(temp < (nums[i]-1)*(nums[j]-1))
+        {
+            temp = (nums[i]-1)*(nums[j]-1);
+        }
+    }
+    std::cout << temp << std::endl;
+    
+    return 0;
+}
