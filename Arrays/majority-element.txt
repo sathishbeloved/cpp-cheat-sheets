@@ -1,0 +1,39 @@
+/*
+Write a function which takes an array and prints the majority element (if it exists), 
+otherwise prints "No Majority Element". A majority element in an array A[] of size n
+is an element that appears more than n/2 times (and hence there is at most one such element).
+*/ 
+
+   int majorityElement(int a[], int size)
+    {
+     int max=0;
+     int count=0;
+     int index =1;
+     for(int i=0;i<size;i++){
+         
+         if(a[max] == a[i]){
+             count++;
+         }
+         else
+         count--;
+         
+         if(count == 0){
+             max = i;
+             count =1;
+         }
+     }
+     count = 0;
+     for(int i=0;i<size;i++){
+     
+     if(a[i] == a[max])
+     count ++;
+         
+     }
+     if(count > size/2)
+     return a[max];
+     else
+     return -1;
+     
+     
+     
+    }
