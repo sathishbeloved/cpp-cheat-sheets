@@ -1,33 +1,47 @@
 /*
 Given a non-negative number represented as a list of digits, add 1 to the number (increment the number represented by the digits). The digits are stored such that the most significant digit is first element of array.
+
+For Input:
+9
+3 3 0 7 3 5 4 6 9
+your output is: 
+3 3 0 7 3 5 4 7 0 
 */ 
 
-
    vector<int> increment(vector<int> arr ,int N) {
-        int count =0;
-        int i;
-       for(i=N-1;i>N;i--){
-           if(arr[i] != 9){
-               break;
-           }
-           else{
-               count++;
-           }
-       }
-       if(count == 0){
-           arr[N-1] = arr[N-1]+1;
-           return arr;
-       }
-       else{
-           if(N-count > 0){
-           for(i=N;i>(N-count);i--){
-               arr[i] = 0;
-           }
-               
-           }
-           else{
-               arr[count] = arr[count] +1;
-           }
-       }
-       return arr;
+  int count=0;
+  for(int i=N-1;i>=0;i--){
+      
+      if(arr[i] != 9){
+          break;
+      }
+      else{
+          count++;
+      }
+  }
+        //   cout<<count<<endl;
+  if(count == N){
+      for(int i=0;i<N;i++)
+      {
+          arr.pop_back();
+      }
+      arr.push_back(1);
+      for(int i=0;i<N;i++){
+          
+      arr.push_back(0);
+      }
+  }
+  else if(count ==0){
+      arr[N-1] = arr[N-1]+1;
+  }else{
+      int temp = N-count-1;
+      for(int i=N-1; i>temp;i--){
+          arr[i]=0;
+      }
+      
+      arr[temp] = arr[temp]+1;
+      
+  }
+  
+  return arr;
     }
