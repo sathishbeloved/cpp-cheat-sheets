@@ -1,0 +1,169 @@
+/*
+implemnt a program that read input and push into dynamic stack
+1. find the largest and smallest possible number from those 4 digit
+2. find diff, 
+3. compare diff with top.. if same then display diff and quit... if not then repeat step 1 to 3
+*/
+#include<iostream>
+using namespace std;
+class node
+{
+	public:
+	int data;
+	node *next;
+	
+	node *top=NULL;
+	void push(int val)
+	{
+	  	node *newnode=new node();
+	  	newnode->data=val;
+	  	newnode->next=NULL;
+	  	if(top==NULL)
+	  	  top=newnode;
+	  	else
+	  	{
+	  	  newnode->next=top;
+	  	  top=newnode;
+		  }
+
+}
+int pop()
+{
+	if(isempty())
+        cout<<"stack is empty. Can't pop....";
+	else
+	{
+	node *temp=top;
+	int x=temp->data;
+	top=top->next;
+	delete(temp);
+	return(x);
+    }
+}
+void display()
+{node *temp=top;
+while(temp!=NULL)
+{
+  cout<<temp->data<<" ";
+  temp=temp->next;
+}
+
+}
+int isempty()
+{
+	if(top==NULL)
+	  return 1;
+	else
+	  return 0;
+}
+};
+
+
+
+void swap(int *xp, int *yp)
+{
+    int temp = *xp;
+    *xp = *yp;
+    *yp = temp;
+}
+
+void min_sort(int arr[], int n)
+{
+    int i, j;
+    for (i = 0; i < n-1; i++)
+    for (j = 0; j < n-i-1; j++)
+        if (arr[j] > arr[j+1])
+            swap(&arr[j], &arr[j+1]);
+}
+void max_sort(int arr[], int n)
+{
+    int i, j;
+    for (i = 0; i < n-1; i++)
+    for (j = 0; j < n-i-1; j++)
+        if (arr[j] < arr[j+1])
+            swap(&arr[j], &arr[j+1]);
+}
+
+
+int i;
+
+int large(int number){
+    i=0;
+int temp = number;
+int temp1[100];
+int retnum = 0;
+while (number > 0)
+{
+
+    int digit = number%10;
+    number /= 10;
+    temp1[i] = digit;
+     i++;
+}
+max_sort(temp1,i);
+
+for(int j=0;j<i;j++){
+
+
+    retnum = retnum * 10;
+ retnum = retnum + temp1[j];
+}
+
+return retnum;
+}
+
+
+int small(int number){
+    i=0;
+int temp = number;
+int temp1[100];
+int retnum = 0;
+while (number > 0)
+{
+
+    int digit = number%10;
+    number /= 10;
+    temp1[i] = digit;
+     i++;
+}
+min_sort(temp1,i);
+
+for(int j=0;j<i;j++){
+
+
+    retnum = retnum * 10;
+ retnum = retnum + temp1[j];
+}
+return retnum;
+}
+
+
+
+
+
+int main(){
+int n,diff;
+cin>>n;
+node obj,*tem;
+
+obj.push(n);
+int x;
+tem=obj.top;
+x=tem->data;
+
+diff = large(n) - small(n);
+while(x != diff){
+
+    obj.push(diff);
+
+    diff = large(diff) - small(diff);
+
+    tem=obj.top;
+    x=tem->data;
+
+}
+    tem=obj.top;
+    x=tem->data;
+cout<<x;
+
+}
