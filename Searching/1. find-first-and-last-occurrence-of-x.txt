@@ -1,0 +1,67 @@
+/*
+Given a sorted array with possibly duplicate elements. The task is to find indexes of first and last occurrences of an element X in the given array.
+
+Note: If the element is not present in the array return {-1,-1} as pair.
+Your Task:  
+You don't need to read input or print anything. Your task is to complete the function indexes() which takes the array v[] and an integer X as inputs and returns  the first and last occurrence of the element X. If the element is not present in the array return {-1,-1} as pair.
+
+Can you solve the problem in expected time complexity?
+
+Expected Time Complexity: O(Log(N))
+Expected Auxiliary Space: O(1)
+*/
+
+//Brute force
+    pair<long,long> indexes(vector<long long> v, long long x)
+    {
+        // long long arr[2] = {-1,-1};
+        vector<long > arr;
+        arr.push_back(-1);
+        arr.push_back(-1);
+        int count =0;
+        for(int i =0;i<v.size();i++){
+            if(v[i] == x && count==0){
+                arr.pop_back();
+                arr.pop_back();
+                arr.push_back(i);
+                arr.push_back(i);
+                count++;
+            }
+            else if(v[i] == x){
+               arr.pop_back();
+         arr.push_back(i);
+            }
+        }
+        return {arr[0],arr[1]};
+        
+    }
+
+// Solution using vector
+    pair<long,long> indexes(vector<long long> v, long long x)
+    {
+        long arr[2];
+       vector<long long>::iterator it = std::find(v.begin(),v.end(),x);
+       if(it != v.end()){
+           
+           arr[0] = distance(v.begin(), it);
+           
+           arr[1] = arr[0];
+           
+           for(int i=arr[0]+1; i<v.size(); i++){
+           
+               if(v[arr[0]] == v[i]){
+               arr[1] = arr[1]+1;
+               }
+                else
+                break;
+           }
+       }
+       else{
+        //   arr.push_back(-1);
+        //   arr.push_back(-1);
+        arr[0] = -1;
+        arr[1] = -1;
+          
+       }
+        return {arr[0],arr[1]};
+    }
