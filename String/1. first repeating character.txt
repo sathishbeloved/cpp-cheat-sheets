@@ -1,0 +1,35 @@
+
+// Brute force solution:
+
+// Time complexity: O(n²)
+// Space complexity: O(1)
+
+char firstRepeatingCharacter(string str){
+  for(int i = 0; i < str.length(); i++){
+    for(int j = 0; j < i; j++){
+      if(str.at(i) == str.at(j))
+        return str.at(i);
+    }
+  }
+  return '\0';
+}
+
+
+
+
+
+// By using a dictionary:
+
+// Time complexity: O(n)
+// Space complexity: O(n)
+
+char firstRepeatingCharacter(string str){
+  unordered_map<char,bool> visited;
+  for(char const& ch : str){
+    if(visited.find(ch) != visited.end()) return ch;
+    else visited[ch] = true;
+  }
+  return '\0';
+}
+
+
