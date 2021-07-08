@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+/*
+ * Complete the 'rotLeft' function below.
+ *
+ * The function is expected to return an INTEGER_ARRAY.
+ * The function accepts following parameters:
+ *  1. INTEGER_ARRAY a
+ *  2. INTEGER d
+ */
+
+vector<int> rotLeft(vector<int> a, int d) {
+    int temp=0,i;
+    int size =  a.size();
+    vector<int> out(size);
+    for(i=d % size ; temp < size; i++,temp++){
+        out[temp] = a[i % size]; 
+    }
+    
+return out;
+
+}
+
+int main()
+{
+    int n ;
+        cin>>n;
+    int d;
+        cin>>d;
+    vector<int> a(n);
+
+    for (int i = 0; i < n; i++) {
+        cin>>a[i];
+    }
+
+    vector<int> result = rotLeft(a, d);
+
+    for (size_t i = 0; i < result.size(); i++) {
+        cout << result[i];
+
+        if (i != result.size() - 1) {
+            cout << " ";
+        }
+    }
+
+    cout << "\n";
+    return 0;
+}
+
