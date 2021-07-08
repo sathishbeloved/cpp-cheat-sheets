@@ -1,3 +1,6 @@
+#include<bits/stdcpp>
+using namespace std;
+
 int romanToDecimal(string &str) {
     int out =0;
     map<char,int> t;
@@ -21,4 +24,10 @@ int romanToDecimal(string &str) {
     }
     return out;
     
+}
+
+int main(){
+string s;
+cin>>s;
+cout<< romanToDecimal(s); <<endl;
 }
