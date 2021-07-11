@@ -1,0 +1,83 @@
+/******************************************************************************
+
+Bubble sort and insertion sort
+
+*******************************************************************************/
+#include <iostream>
+using namespace std;
+
+void swap(int *a ,int *b){
+    int t = *a;
+    *a = *b;
+    *b = t;
+}
+void bubble(int arr[],int n){
+        int temp,i,j;
+    
+    for(i=0;i<n;i++){
+        for(j =0;j<n-i-1;j++){
+            if(arr[j] > arr[j+1]){
+                swap(&arr[j],&arr[j+1]);
+
+            }
+        }
+    }
+}
+
+void insertion(int arr[],int n){
+    int key,i,j;
+    for(i=1;i<n;i++){
+        key = arr[i];
+        j=i-1;
+        while(j>=0 && arr[j]>key){
+            arr[j+1] = arr[j];
+            j = j-1;
+        }
+        arr[j+1] = key;
+    }
+}
+ 
+int main()
+{
+    int n;
+    cout<<"Enter the array size : ";
+    cin>>n;
+    int arr[n];
+    
+    for(int i=0;i<n;i++){
+        cout<<"Enter the number : "<<i+1<<" : ";
+        cin>>arr[i];
+    }
+
+    int choice;
+    cout<<"Enter the choice : 1. Bubble sort\t 2. Insetion sort\t 0. Exit"<<endl;
+    cin>>choice;
+    
+    while(choice!=0){
+        switch(choice){
+            case 1:
+            bubble(arr,n);
+            choice = 0;
+            break;
+            case 2:
+            insertion(arr,n);
+            choice = 0;
+            break;
+            default:
+            cout<<"Enter the correct choice"<<endl;
+            cout<<"Enter the choice : 1. Bubble sort\t 2. Insetion sort\t 0. Exit"<<endl;
+            cin>>choice;
+            break;
+            
+        }
+    }
+
+    
+        cout<<"The array after sorted : "<<endl;
+        for(int i=0;i<n;i++){
+        cout<<arr[i];
+    }
+    
+    return 0;
+    
+}
