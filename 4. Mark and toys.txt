@@ -1,0 +1,67 @@
+/*
+Mark and Jane are very happy after having their first child. Their son loves toys, so Mark wants to buy some. There are a number of different toys lying in front of him, tagged with their prices. Mark has only a certain amount to spend, and he wants to maximize the number of toys he buys with this money. Given a list of toy prices and an amount to spend, determine the maximum number of gifts he can buy.
+
+Note Each toy can be purchased only once.
+
+Sample Input
+
+7 50
+1 12 5 111 200 1000 10
+Sample Output
+
+4
+Explanation
+
+He can buy only  toys at most. These toys have the following prices: 1, 12, 5, 10 .
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int maximumToys(vector<int> prices, int k) {
+    sort(prices.begin(),prices.end());
+    int count =0,cost=k;
+    for(auto i : prices){
+        if(cost-i > 0){
+            cost = cost -i;
+            // cout<<cost<<endl;
+            count++;        
+        }
+        
+    }
+    return count;
+
+}
+
+int main()
+{
+
+
+    vector<string> first_multiple_input = split(rtrim(first_multiple_input_temp));
+
+    int n;
+    cin>>n;
+    int k;
+    cin>>k;
+
+    string prices_temp_temp;
+    getline(cin, prices_temp_temp);
+
+    vector<string> prices_temp = split(rtrim(prices_temp_temp));
+
+    vector<int> prices(n);
+
+    for (int i = 0; i < n; i++) {
+        int prices_item = stoi(prices_temp[i]);
+
+        prices[i] = prices_item;
+    }
+
+    int result = maximumToys(prices, k);
+
+    fout << result << "\n";
+
+    fout.close();
+
+    return 0;
+}
