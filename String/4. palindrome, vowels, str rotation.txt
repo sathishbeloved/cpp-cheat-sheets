@@ -1,0 +1,92 @@
+
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+class base{
+    protected:
+    string str;
+
+    
+    public:
+    
+
+    void Palindrome(){
+              string revStr= "";
+        for (int i = str.size()-1; i >=0; i--) 
+            {  
+                revStr = revStr + str[i];  
+            }  
+            if (revStr == str) 
+            {  
+                std::cout << "String is Palindrome " << std::endl;
+            }  
+            else  
+            {  
+                std::cout << "String is not Palindrome " << std::endl;
+            }  
+    }
+    
+     void removeVowels(){
+        string output  = "";
+        int count = 0;
+        for(int i =0;i<str.size();i++){
+            if(str[i] =='a' || str[i] == 'e' || str[i] == 'i' || str[i] == 'o' || str[i] == 'u' ){
+                count++;
+                continue;
+            } 
+            output = output + str[i];
+        }
+        std::cout << "The number of vowels is : "<<count << std::endl;
+        std::cout << "The string without vowels is : "<<output << std::endl;
+
+        
+    }
+    void strRotate(){
+        string output = "";
+        std::cout << "Enter the rotation count" << std::endl;
+        int n;
+        cin>>n;
+           int count=0;
+           for(int j =0;j<str.size();j++){
+                         if(count <n){
+                             count++;
+                             continue;
+                         }
+                         else{
+                             output =  output+str[j];
+                         }
+                     }
+                     for(int j =0;j<count;j++){
+                         output =  output+str[j];
+                     }
+                     cout<<output<<endl;
+        
+    }
+
+};
+
+class derived :base{
+    derived(string strd){
+        str = strd;
+    }
+    public:
+    void c(){
+        base b;
+    b.Palindrome();
+    b.removeVowels();
+    b.strRotate();
+    }
+};
+
+int main()
+{
+    string str;
+    std::cout << "ENter the string : " << std::endl;
+    std::cin >> str;
+    derived d(str);
+    d.c();
+    return 0;
+}
+
+
+
