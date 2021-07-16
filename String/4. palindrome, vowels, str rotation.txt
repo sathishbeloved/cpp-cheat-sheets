@@ -66,10 +66,11 @@ class base{
 };
 
 class derived :base{
+    public:
     derived(string strd){
         str = strd;
     }
-    public:
+
     void c(){
         base b;
     b.Palindrome();
